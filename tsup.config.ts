@@ -13,6 +13,7 @@ export default defineConfig({
   sourcemap: true,
   clean: true,
   target: "es2022",
+  cjsInterop: true,
   outExtension({ format }) {
     return { js: format === "cjs" ? ".cjs" : ".js" };
   },
