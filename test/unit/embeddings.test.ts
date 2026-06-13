@@ -64,10 +64,13 @@ describe("embeddings.create", () => {
       if (req.url.endsWith("/api/llm/embeddings")) {
         return jsonResponse({ success: true, data: { queueId: "q2", status: "queued" } });
       }
-      return jsonResponse({
-        success: true,
-        data: { queueId: "q2", status: "completed", result: RESULT },
-      });
+      if (req.url.endsWith("/api/llm/queue/result")) {
+        return jsonResponse({
+          success: true,
+          data: { queueId: "q2", status: "completed", result: RESULT },
+        });
+      }
+      return jsonResponse({ error: "unexpected path" }, { status: 500 });
     });
 
     const job = await c.embeddings.createJob({ provider: "lmstudio", input: "hello" });
