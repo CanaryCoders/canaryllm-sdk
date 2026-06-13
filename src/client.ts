@@ -6,6 +6,7 @@ import { AudioResource } from "./resources/audio";
 import { ChatResource } from "./resources/chat";
 import { ConversationsResource } from "./resources/conversations";
 import { DiscoveryResource } from "./resources/discovery";
+import { EmbeddingsResource } from "./resources/embeddings";
 import { ImagesResource } from "./resources/images";
 import { KeysResource } from "./resources/keys";
 import { PortalResource } from "./resources/portal";
@@ -50,6 +51,7 @@ export class CanaryLLM {
   readonly images: ImagesResource;
   readonly video: VideoResource;
   readonly audio: AudioResource;
+  readonly embeddings: EmbeddingsResource;
   readonly vision: VisionResource;
   readonly conversations: ConversationsResource;
   readonly agents: AgentsResource;
@@ -86,6 +88,7 @@ export class CanaryLLM {
     this.images = new ImagesResource(this.transport, poll);
     this.video = new VideoResource(this.transport, poll);
     this.audio = new AudioResource(this.transport, poll);
+    this.embeddings = new EmbeddingsResource(this.transport, poll);
     this.vision = new VisionResource(this.transport, poll);
     this.conversations = new ConversationsResource(this.transport, poll);
     this.agents = new AgentsResource(this.transport, poll);

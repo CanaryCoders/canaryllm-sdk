@@ -32,7 +32,8 @@ export type TaskKind =
   | "sound-effect"
   | "music"
   | "dialogue"
-  | "vision";
+  | "vision"
+  | "embedding";
 
 export interface PollOptions {
   /** first poll delay after submit (default 500ms) */

@@ -173,3 +173,27 @@ export interface DialogueResult {
   model: string;
   provider: string;
 }
+
+export interface EmbeddingParams {
+  provider: "lmstudio";
+  /** A single string or an array of strings (max 2048) to embed. */
+  input: string | string[];
+  /** Embedding model id, e.g. `nomic-embed-text-v1.5`. */
+  model?: string;
+  /** Output dimensionality for models that support truncation (Matryoshka). */
+  dimensions?: number;
+  encodingFormat?: "float" | "base64";
+  tag?: string;
+  service?: string;
+}
+export interface EmbeddingResult {
+  /** One vector per input, in input order. */
+  embeddings: number[][];
+  model: string;
+  provider: string;
+  dimensions: number;
+  usage: {
+    inputTokens: number;
+    totalTokens: number;
+  };
+}

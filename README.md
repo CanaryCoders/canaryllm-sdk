@@ -2,7 +2,9 @@
 
 TypeScript SDK for the [CanaryLLM](https://canaryllm.canarycoders.es) gateway. Runs on Node 18+ and Bun, with no runtime dependencies.
 
-One client covers chat, image/video/audio generation, vision, conversational agents, realtime sessions, and usage data. The queue polling, SSE streaming, retries, and error typing are handled for you, so most calls are a single `await`.
+**Docs:** https://canaryllm.canarycoders.es/docs#typescript-sdk
+
+One client covers chat, image/video/audio generation, embeddings, vision, conversational agents, realtime sessions, and usage data. The queue polling, SSE streaming, retries, and error typing are handled for you, so most calls are a single `await`.
 
 ## Install
 
@@ -74,6 +76,20 @@ const { text } = await client.audio.transcribe({ provider: "elevenlabs", audio, 
 const song = await client.audio.music({ prompt: "calm lo-fi", durationMs: 20000 });
 const { detections } = await client.vision.detect({ image });
 ```
+
+## Embeddings
+
+Embed text into vectors with a local model (LM Studio), for customer-side RAG. The gateway processes the text transiently and stores nothing — you keep the vectors and documents in your own store (e.g. pgvector, sqlite-vec).
+
+```ts
+const { embeddings, dimensions } = await client.embeddings.create({
+  provider: "lmstudio",
+  model: "nomic-embed-text-v1.5",
+  input: ["first chunk of text", "second chunk of text"],
+});
+```
+
+OpenAI embedding clients work too: point them at `<baseURL>/v1` and use `lmstudio/<model>`.
 
 ## Errors
 

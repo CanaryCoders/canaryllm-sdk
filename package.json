@@ -1,6 +1,6 @@
 {
   "name": "@canarycoders/canaryllm",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Official TypeScript SDK for the CanaryLLM multi-provider gateway",
   "license": "MIT",
   "author": "CanaryCoders",
@@ -61,6 +61,7 @@
   },
   "scripts": {
     "build": "tsup",
+    "prepare": "tsup",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src",
     "test": "bun test test/unit",

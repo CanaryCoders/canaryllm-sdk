@@ -19,6 +19,7 @@ const DEFAULT_MAX_WAIT_MS: Record<TaskKind, number> = {
   music: 17 * 60_000,
   dialogue: 6 * 60_000,
   vision: 6 * 60_000,
+  embedding: 6 * 60_000,
 };
 
 type PollOutcome<T> =
