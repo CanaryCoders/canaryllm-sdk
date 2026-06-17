@@ -1,7 +1,7 @@
 {
-  "name": "@canarycoders/canaryllm",
-  "version": "0.2.0",
-  "description": "Official TypeScript SDK for the CanaryLLM multi-provider gateway",
+  "name": "@canarycoders/ai",
+  "version": "0.3.0",
+  "description": "Official TypeScript SDK for the CanaryCoders AI multi-provider gateway",
   "license": "MIT",
   "author": "CanaryCoders",
   "homepage": "https://github.com/CanaryCoders/canaryllm-sdk#readme",

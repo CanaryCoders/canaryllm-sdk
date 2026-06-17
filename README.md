@@ -1,24 +1,24 @@
-# @canarycoders/canaryllm
+# @canarycoders/ai
 
-TypeScript SDK for the [CanaryLLM](https://canaryllm.canarycoders.es) gateway. Runs on Node 18+ and Bun, with no runtime dependencies.
+TypeScript SDK for the [CanaryCoders AI](https://ai.canarycoders.es) gateway. Runs on Node 18+ and Bun, with no runtime dependencies.
 
-**Docs:** https://canaryllm.canarycoders.es/docs#typescript-sdk
+**Docs:** https://docs.ai.canarycoders.es
 
 One client covers chat, image/video/audio generation, embeddings, vision, conversational agents, realtime sessions, and usage data. The queue polling, SSE streaming, retries, and error typing are handled for you, so most calls are a single `await`.
 
 ## Install
 
 ```bash
-bun add @canarycoders/canaryllm
-# or: npm install @canarycoders/canaryllm
+bun add @canarycoders/ai
+# or: npm install @canarycoders/ai
 ```
 
 ## Quick start
 
 ```ts
-import CanaryLLM from "@canarycoders/canaryllm";
+import CanaryLLM from "@canarycoders/ai";
 
-const client = new CanaryLLM({ apiKey: process.env.CANARYLLM_API_KEY });
+const client = new CanaryLLM({ apiKey: process.env.CANARY_AI_API_KEY });
 
 const res = await client.chat.complete({
   provider: "openai",
@@ -29,7 +29,7 @@ const res = await client.chat.complete({
 console.log(res.content, res.usage.totalTokens);
 ```
 
-`apiKey` defaults to `CANARYLLM_API_KEY` and `baseURL` to the hosted gateway, so `new CanaryLLM()` with the env var set is enough.
+`apiKey` defaults to `CANARY_AI_API_KEY` (legacy `CANARYLLM_API_KEY` still works) and `baseURL` to the hosted gateway, so `new CanaryLLM()` with the env var set is enough.
 
 ## How the queue works
 
@@ -96,7 +96,7 @@ OpenAI embedding clients work too: point them at `<baseURL>/v1` and use `lmstudi
 Every failure is a subclass of `APIError`: `AuthenticationError`, `PermissionError`, `RateLimitError`, `BadRequestError`, `NotFoundError`, `InternalServerError`, and `APIConnectionError` / `APIConnectionTimeoutError`. Branch on `.code` or `.status`, not `.message`, since the gateway sanitizes messages in production.
 
 ```ts
-import { RateLimitError } from "@canarycoders/canaryllm";
+import { RateLimitError } from "@canarycoders/ai";
 
 try {
   await client.chat.complete({ provider: "openai", messages });
@@ -116,7 +116,7 @@ Transient failures (429, 5xx, network drops) retry with exponential backoff and 
 The SDK belongs on your backend, where the API key stays. It mints a short-lived credential; the browser opens the actual WebRTC connection.
 
 ```ts
-import { toBrokeredCredential } from "@canarycoders/canaryllm";
+import { toBrokeredCredential } from "@canarycoders/ai";
 
 // backend
 const session = await client.realtime.sessions.create({ kind: "voice", voice: "alloy" });
@@ -125,7 +125,7 @@ return toBrokeredCredential(session);   // safe to send to the browser
 
 ```ts
 // browser
-import { connectRealtime } from "@canarycoders/canaryllm/realtime-client";
+import { connectRealtime } from "@canarycoders/ai/realtime-client";
 
 const conn = await connectRealtime({ credential, onEvent: console.log });
 conn.send({ type: "response.create" });
@@ -152,7 +152,7 @@ await oa.chat.completions.create({
 
 | Option | Default | Notes |
 |---|---|---|
-| `apiKey` | `CANARYLLM_API_KEY` | API key (`clk_live_…`) |
+| `apiKey` | `CANARY_AI_API_KEY` | API key (`clk_live_…`) |
 | `baseURL` | hosted gateway | override for self-hosted |
 | `authStyle` | `"bearer"` | or `"x-api-key"` |
 | `timeoutMs` | `60000` | per-request total timeout |

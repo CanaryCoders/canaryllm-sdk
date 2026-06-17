@@ -19,9 +19,9 @@ import { VisionResource } from "./resources/vision";
 import type { PollOptions } from "./types/queue";
 
 export interface CanaryLLMOptions {
-  /** API key. Defaults to `process.env.CANARYLLM_API_KEY`. */
+  /** API key. Defaults to `process.env.CANARY_AI_API_KEY` (legacy `CANARYLLM_API_KEY` still read). */
   apiKey?: string;
-  /** Base URL. Defaults to `https://canaryllm.canarycoders.es`. */
+  /** Base URL. Defaults to `https://api.ai.canarycoders.es`. */
   baseURL?: string;
   /** Send the key as `Authorization: Bearer` (default) or `X-API-Key`. */
   authStyle?: "bearer" | "x-api-key";
@@ -38,7 +38,7 @@ export interface CanaryLLMOptions {
   poll?: PollOptions;
 }
 
-const DEFAULT_BASE_URL = "https://canaryllm.canarycoders.es";
+const DEFAULT_BASE_URL = "https://api.ai.canarycoders.es";
 
 function readEnv(key: string): string | undefined {
   if (typeof process !== "undefined" && process.env) return process.env[key];
@@ -67,9 +67,13 @@ export class CanaryLLM {
   private readonly apiKey?: string;
 
   constructor(options: CanaryLLMOptions = {}) {
-    this.apiKey = options.apiKey ?? readEnv("CANARYLLM_API_KEY");
+    this.apiKey =
+      options.apiKey ?? readEnv("CANARY_AI_API_KEY") ?? readEnv("CANARYLLM_API_KEY");
     this.baseURL =
-      options.baseURL ?? readEnv("CANARYLLM_BASE_URL") ?? DEFAULT_BASE_URL;
+      options.baseURL ??
+      readEnv("CANARY_AI_BASE_URL") ??
+      readEnv("CANARYLLM_BASE_URL") ??
+      DEFAULT_BASE_URL;
 
     this.transport = new Transport({
       apiKey: this.apiKey,

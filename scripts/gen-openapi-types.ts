@@ -11,7 +11,7 @@ import openapiTS, { astToString } from "openapi-typescript";
 
 const SPEC_URL =
   process.env.CANARYLLM_OPENAPI_URL ??
-  "https://canaryllm.canarycoders.es/api/public/openapi.yaml";
+  "https://api.ai.canarycoders.es/api/public/openapi.yaml";
 
 const OUT = new URL("../src/types/openapi.gen.d.ts", import.meta.url);
 

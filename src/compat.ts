@@ -5,7 +5,7 @@
  *
  * @example
  * import OpenAI from "openai";
- * import { openaiTarget } from "@canarycoders/canaryllm/compat";
+ * import { openaiTarget } from "@canarycoders/ai/compat";
  * const oa = new OpenAI(openaiTarget(baseURL, apiKey));
  */
 export interface CompatTarget {

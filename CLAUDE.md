@@ -1,6 +1,6 @@
 # canaryllm-sdk
 
-Official TypeScript SDK for the CanaryLLM gateway (`@canarycoders/canaryllm`). Targets Node 18+ and Bun, zero runtime dependencies.
+Official TypeScript SDK for the CanaryLLM gateway (`@canarycoders/ai`). Targets Node 18+ and Bun, zero runtime dependencies.
 
 ## Source of truth
 

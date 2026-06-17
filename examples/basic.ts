@@ -1,7 +1,7 @@
 /**
- * Run with: CANARYLLM_API_KEY=clk_live_... bun run examples/basic.ts
+ * Run with: CANARY_AI_API_KEY=clk_live_... bun run examples/basic.ts
  */
-import CanaryLLM, { RateLimitError } from "@canarycoders/canaryllm";
+import CanaryLLM, { RateLimitError } from "@canarycoders/ai";
 
 const client = new CanaryLLM();
 
