@@ -1,0 +1,21 @@
+{
+  "name": "@canarycoders/canaryllm",
+  "version": "0.2.1",
+  "description": "DEPRECATED — renamed to @canarycoders/ai. Thin re-export shim.",
+  "license": "MIT",
+  "author": "CanaryCoders",
+  "type": "module",
+  "main": "./index.cjs",
+  "module": "./index.js",
+  "types": "./index.d.ts",
+  "files": ["index.js","index.cjs","index.d.ts","compat.js","compat.cjs","compat.d.ts","realtime-client","README.md"],
+  "publishConfig": { "access": "public", "registry": "https://registry.npmjs.org/" },
+  "exports": {
+    ".": { "types": "./index.d.ts", "import": "./index.js", "require": "./index.cjs" },
+    "./compat": { "types": "./compat.d.ts", "import": "./compat.js", "require": "./compat.cjs" },
+    "./realtime-client": { "types": "./realtime-client/index.d.ts", "import": "./realtime-client/index.js", "require": "./realtime-client/index.cjs" },
+    "./package.json": "./package.json"
+  },
+  "dependencies": { "@canarycoders/ai": "^0.3.0" },
+  "engines": { "node": ">=18", "bun": ">=1.0.0" }
+}
