@@ -1,5 +1,5 @@
 /**
- * Helpers to point the official OpenAI / Anthropic SDKs at CanaryLLM's
+ * Helpers to point the official OpenAI / Anthropic SDKs at CanaryCoders AI's
  * drop-in compatible endpoints. Use the `provider/modelId` model-string format
  * (e.g. `"openai/gpt-4o-mini"`, `"anthropic/claude-sonnet-4-5"`).
  *

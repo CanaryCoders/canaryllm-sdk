@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { CanaryLLM } from "../../src/client";
+import { CanaryCodersAI } from "../../src/client";
 import type { EmbeddingResult } from "../../src/types/media";
 import { jsonResponse, mockFetch, type RecordedRequest } from "./helpers";
 
@@ -16,7 +16,7 @@ const RESULT: EmbeddingResult = {
 
 function client(handler: (req: RecordedRequest) => Response) {
   const { fetch, calls } = mockFetch(handler);
-  const c = new CanaryLLM({
+  const c = new CanaryCodersAI({
     apiKey: "clk_test",
     baseURL: "https://api.test",
     fetch,

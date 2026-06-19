@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { CanaryLLM } from "../../src/index";
+import { CanaryCodersAI } from "../../src/index";
 import { jsonResponse, mockFetch } from "./helpers";
 
 describe("chat.complete", () => {
@@ -37,7 +37,7 @@ describe("chat.complete", () => {
       return jsonResponse({}, { status: 404 });
     });
 
-    const client = new CanaryLLM({
+    const client = new CanaryCodersAI({
       apiKey: "clk_live_x",
       baseURL: "https://api.test",
       fetch,
@@ -65,7 +65,7 @@ describe("chat.complete", () => {
         data: { status: "completed", result: {} },
       });
     });
-    const client = new CanaryLLM({
+    const client = new CanaryCodersAI({
       apiKey: "x",
       baseURL: "https://api.test",
       fetch,

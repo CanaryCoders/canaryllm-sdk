@@ -16,9 +16,9 @@ bun add @canarycoders/ai
 ## Quick start
 
 ```ts
-import CanaryLLM from "@canarycoders/ai";
+import CanaryCodersAI from "@canarycoders/ai";
 
-const client = new CanaryLLM({ apiKey: process.env.CANARY_AI_API_KEY });
+const client = new CanaryCodersAI({ apiKey: process.env.CANARY_AI_API_KEY });
 
 const res = await client.chat.complete({
   provider: "openai",
@@ -29,7 +29,7 @@ const res = await client.chat.complete({
 console.log(res.content, res.usage.totalTokens);
 ```
 
-`apiKey` defaults to `CANARY_AI_API_KEY` (legacy `CANARYLLM_API_KEY` still works) and `baseURL` to the hosted gateway, so `new CanaryLLM()` with the env var set is enough.
+`apiKey` defaults to `CANARY_AI_API_KEY` (legacy `CANARYLLM_API_KEY` still works) and `baseURL` to the hosted gateway, so `new CanaryCodersAI()` with the env var set is enough.
 
 ## How the queue works
 

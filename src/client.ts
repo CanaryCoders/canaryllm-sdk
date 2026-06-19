@@ -18,7 +18,7 @@ import { VideoResource } from "./resources/video";
 import { VisionResource } from "./resources/vision";
 import type { PollOptions } from "./types/queue";
 
-export interface CanaryLLMOptions {
+export interface CanaryCodersAIOptions {
   /** API key. Defaults to `process.env.CANARY_AI_API_KEY` (legacy `CANARYLLM_API_KEY` still read). */
   apiKey?: string;
   /** Base URL. Defaults to `https://api.ai.canarycoders.es`. */
@@ -45,7 +45,7 @@ function readEnv(key: string): string | undefined {
   return undefined;
 }
 
-export class CanaryLLM {
+export class CanaryCodersAI {
   readonly chat: ChatResource;
   readonly queue: QueueResource;
   readonly images: ImagesResource;
@@ -66,7 +66,7 @@ export class CanaryLLM {
   private readonly baseURL: string;
   private readonly apiKey?: string;
 
-  constructor(options: CanaryLLMOptions = {}) {
+  constructor(options: CanaryCodersAIOptions = {}) {
     this.apiKey =
       options.apiKey ?? readEnv("CANARY_AI_API_KEY") ?? readEnv("CANARYLLM_API_KEY");
     this.baseURL =

@@ -95,7 +95,7 @@ export interface Citation {
   endIndex?: number;
 }
 
-/** The standard CanaryLLM success envelope: `{ success: true, data: T }`. */
+/** The standard CanaryCoders AI success envelope: `{ success: true, data: T }`. */
 export interface ApiEnvelope<T> {
   success: boolean;
   data: T;

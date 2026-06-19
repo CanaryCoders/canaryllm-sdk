@@ -1,8 +1,13 @@
-import { CanaryLLM } from "./client";
+import { CanaryCodersAI } from "./client";
 
-export { CanaryLLM };
-export default CanaryLLM;
-export type { CanaryLLMOptions } from "./client";
+export { CanaryCodersAI };
+export default CanaryCodersAI;
+export type { CanaryCodersAIOptions } from "./client";
+
+/** @deprecated Renamed to `CanaryCodersAI`. Kept as an alias for backwards compatibility. */
+export { CanaryCodersAI as CanaryLLM };
+/** @deprecated Renamed to `CanaryCodersAIOptions`. */
+export type { CanaryCodersAIOptions as CanaryLLMOptions } from "./client";
 
 // Errors
 export {

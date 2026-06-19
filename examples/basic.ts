@@ -1,9 +1,9 @@
 /**
  * Run with: CANARY_AI_API_KEY=clk_live_... bun run examples/basic.ts
  */
-import CanaryLLM, { RateLimitError } from "@canarycoders/ai";
+import CanaryCodersAI, { RateLimitError } from "@canarycoders/ai";
 
-const client = new CanaryLLM();
+const client = new CanaryCodersAI();
 
 // 1. A completion (submit + poll handled for you)
 const res = await client.chat.complete({
