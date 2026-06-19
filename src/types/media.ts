@@ -6,6 +6,13 @@ export interface ImageGenerateParams {
   size?: string;
   aspectRatio?: string;
   quality?: "standard" | "hd" | "ultra";
+  /**
+   * Reference/input images for image-to-image and subject/style consistency.
+   * Each entry is an http(s) URL, a `data:` URI, or a bare base64 string. When
+   * present, the provider routes to its image-edit path. Per-provider max:
+   * openai 16, gemini 14, vertex 4, xai 3. Not supported by ollama.
+   */
+  referenceImages?: string[];
   tag?: string;
   service?: string;
 }
