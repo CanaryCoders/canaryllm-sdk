@@ -108,6 +108,17 @@ export class Transport {
     return res.text();
   }
 
+  /** Perform the request and return the raw binary body (audio, …). */
+  async bytes(
+    method: HttpMethod,
+    path: string,
+    opts: RequestOptions = {},
+  ): Promise<ArrayBuffer> {
+    const res = await this.send(method, path, opts);
+    if (!res.ok) throw await toAPIError(res);
+    return res.arrayBuffer();
+  }
+
   /** Open a streaming response. Throws if the initial response is an error. */
   async stream(
     method: HttpMethod,

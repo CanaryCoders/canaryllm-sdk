@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { AuthenticationError } from "../../src/core/errors";
+import { AuthenticationError, NotFoundError } from "../../src/core/errors";
 import { Transport } from "../../src/core/http";
 import { jsonResponse, mockFetch } from "./helpers";
 
@@ -88,5 +88,42 @@ describe("Transport", () => {
     });
     await t.json("POST", "/x", { body: { a: 1 } });
     expect(calls[0]?.body).toEqual({ a: 1, tag: "proj-x" });
+  });
+
+  test("bytes() returns the raw binary body", async () => {
+    const payload = new Uint8Array([1, 2, 3, 4]);
+    const { fetch } = mockFetch(
+      () =>
+        new Response(payload, {
+          status: 200,
+          headers: { "content-type": "audio/mpeg" },
+        }),
+    );
+    const t = new Transport({
+      baseURL: "https://api.test",
+      authStyle: "bearer",
+      timeoutMs: 1000,
+      maxRetries: 0,
+      fetch,
+    });
+    const buf = await t.bytes("GET", "/audio");
+    expect(new Uint8Array(buf)).toEqual(payload);
+  });
+
+  test("bytes() throws a typed error on 404", async () => {
+    const { fetch } = mockFetch(() =>
+      jsonResponse(
+        { success: false, error: "gone", code: "NOT_FOUND" },
+        { status: 404 },
+      ),
+    );
+    const t = new Transport({
+      baseURL: "https://api.test",
+      authStyle: "bearer",
+      timeoutMs: 1000,
+      maxRetries: 0,
+      fetch,
+    });
+    await expect(t.bytes("GET", "/audio")).rejects.toBeInstanceOf(NotFoundError);
   });
 });

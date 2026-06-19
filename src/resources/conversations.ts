@@ -81,6 +81,19 @@ class SessionsAPI extends BaseResource {
     }>("GET", `/api/convagents/sessions/${id}`, { signal });
     return data.session;
   }
+
+  /**
+   * Fetch the session recording as raw audio bytes. Single use: the recording
+   * is deleted from ElevenLabs on retrieval, so a second call rejects with 404.
+   * Unfetched recordings are purged after 30 days.
+   */
+  getAudio(id: number, signal?: AbortSignal): Promise<ArrayBuffer> {
+    return this.transport.bytes(
+      "GET",
+      `/api/convagents/sessions/${id}/audio`,
+      { signal },
+    );
+  }
 }
 
 export class ConversationsResource extends BaseResource {
