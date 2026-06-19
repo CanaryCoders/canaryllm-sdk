@@ -62,6 +62,12 @@ export interface CreateConversationSessionParams {
 export interface ConversationSession {
   session: ConversationSessionRecord;
   signedUrl: string;
+  /**
+   * Pass verbatim into the ElevenLabs client's `Conversation.startSession({ dynamicVariables })`
+   * so the post-call webhook correlates this session deterministically. Contains
+   * `canary_session_id` (this session's id).
+   */
+  dynamicVariables: Record<string, string>;
   /** seconds until the signed URL expires (≈900) */
   expiresIn: number;
   textOnly: boolean;
